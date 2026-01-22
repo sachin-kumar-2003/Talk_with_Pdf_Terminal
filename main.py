@@ -7,6 +7,8 @@ from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
 from langchain_qdrant import QdrantVectorStore
 
+from openai import OpenAI
+
 load_dotenv()
 
 api_key = os.getenv("GEMINI_API_KEY")
@@ -43,14 +45,38 @@ retriver = QdrantVectorStore.from_existing_collection(
     embedding = embedder
 )
 
+query = input("ask a question..")
 relavant_chunk = retriver.similarity_search(
-    query = "write all the project name only "
+    query = query
 )
 
-system_prompt = """
+context = "\n\n".join([doc.page_content for doc in relavant_chunk])
+
+system_prompt = f"""
 you are the helpfull AI assistant who responds base of the available context.
 
 context:
-{relavant_chunk}
+{context}
 
 """
+
+client = OpenAI(
+    api_key=api_key,
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/"
+)
+
+response = client.chat.completions.create(
+    model="gemini-3-flash-preview",
+    messages=[
+        {
+            "role": "system",
+            "content":f"{system_prompt}"
+        },
+        {
+            "role":"user",
+            "content":f"{query}"
+        }
+    ]
+)
+
+print(response.choices[0].message.content)
