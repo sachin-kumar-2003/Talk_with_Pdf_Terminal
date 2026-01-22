@@ -53,8 +53,7 @@ GEMINI_API_KEY=your_gemini_api_key_here
 ##  Install Dependencies
 
 ```bash
-pip install langchain langchain-community langchain-qdrant langchain-google-genai \
-            python-dotenv pypdf openai qdrant-client
+pip install -r requirement.txt
 ```
 
 ---
