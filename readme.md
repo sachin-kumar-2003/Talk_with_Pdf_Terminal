@@ -1,4 +1,16 @@
 
+# Flow Diagram (Terminal Based Rag)
+
+<img width="1976" height="1193" alt="diagram-export-1-27-2026-6_27_11-PM" src="https://github.com/user-attachments/assets/5bb2288e-6842-4841-858a-c88e80d8eb1f" />
+
+
+# Project Overview
+
+
+https://github.com/user-attachments/assets/c3c01440-db73-4893-b895-bb6a7581b54e
+
+
+
 #  PDF Question Answering System using Gemini + Qdrant (RAG)
 
 This project implements a **Retrieval-Augmented Generation (RAG)** pipeline that allows you to ask questions about a PDF file and get accurate answers using **Google Gemini**, **LangChain**, and **Qdrant vector database**.
